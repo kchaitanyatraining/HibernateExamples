@@ -39,7 +39,11 @@ public class App {
 		SessionFactory sfactory = HibernateUtil.getSessionFactory();
 		Session session = sfactory.openSession();
 		// Item item = session.get(Item.class, id);
-		Query query = session.createQuery("From Item t  left join   t.cart c");
+		Query query = session.createQuery("From Item t  left join   t.cart c"); //left join
+		
+		//Query query = session.createQuery("From Item t  right join   t.cart c"); //right join
+		
+		//Query query = session.createQuery("From Item t   join fetch  t.cart c"); //inner join
 
 		List list = query.getResultList();
 		System.out.println(list);
