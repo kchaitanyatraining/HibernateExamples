@@ -1,0 +1,41 @@
+package com.one2one;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+
+public class App {
+
+	void saveData(Employee emp) {
+		SessionFactory sfactory = HibernateUtil.getSessionFactory();
+		Session session = sfactory.openSession();
+		org.hibernate.Transaction tx = session.beginTransaction();
+		session.save(emp);
+
+		tx.commit();
+		session.close();
+	}
+
+	void fetchData(int empId) {
+		SessionFactory sfactory = HibernateUtil.getSessionFactory();
+		Session session = sfactory.openSession();
+		Employee emp = session.get(Employee.class, empId);
+		System.out.println(emp);
+		session.close();
+	}
+
+	public static void main(String[] args) {
+		App app=new App();
+//		Employee emp=new Employee();
+//		emp.setEmpid(101);
+//		emp.setEmpName("krishna");
+//		Department dept=new Department();
+//		dept.setDeptId(2001);
+//		dept.setDeptName("Developer");
+//		emp.setDepartment(dept);
+//		app.saveData(emp);
+		
+		app.fetchData(101);
+
+	}
+
+}
